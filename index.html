@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lucas Trainer | Elite Personal Training</title>
-  <meta name="description" content="Personal training in Olympic, Kibera, Nairobi and online. Explore coaching for fat loss, strength, muscle building, and lasting fitness habits with Lucas Trainer." />
-  <meta property="og:title" content="Lucas Trainer | Elite Personal Training" />
-  <meta property="og:description" content="Personal training in Olympic, Kibera, Nairobi and online. Explore coaching for fat loss, strength, muscle building, and lasting fitness habits with Lucas Trainer." />
+  <title>Lucas Training | Personal Trainer Nairobi</title>
+  <meta name="description" content="Personal training, strength coaching, weight loss, muscle building, and athlete development at KAG Olympic Gym Center in Olympic, Kibera, Nairobi." />
+  <meta property="og:title" content="Lucas Training | Personal Trainer Nairobi" />
+  <meta property="og:description" content="Build strength, confidence, and a healthier lifestyle with Lucas, a certified personal trainer at KAG Olympic Gym Center." />
   <meta property="og:type" content="website" />
   <!-- Inline SVG favicon to avoid missing-file 404 during dev -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='100%25' height='100%25' fill='%231E90FF'/%3E%3Ctext x='50%25' y='55%25' font-size='34' font-family='Montserrat,Arial' text-anchor='middle' fill='%23111111'%3EE%3C/text%3E%3C/svg%3E" />
 
   <!-- Critical inline CSS: ensures readable fonts/colors before main CSS loads -->
   <style>
-    /* Use CSS variables so theme.js can toggle colors reliably. Fallbacks keep initial rendering safe. */
+    /* Keep the first paint aligned with the permanent dark brand system. */
     html,body{background:var(--bg,#070B14);color:var(--text,#FFFFFF);font-family:Inter,Arial,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
     a{color:var(--primary)}
     img{max-width:100%;height:auto;display:block}
@@ -30,6 +30,9 @@
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
   <!-- Font Awesome (CDN fallback instead of kit to avoid 403) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/utilities.css">
@@ -38,10 +41,10 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
-  <script src="assets/js/theme.js" defer></script>
+  <link rel="stylesheet" href="assets/css/brand.css">
   <script src="assets/js/ui.js" defer></script>
 </head>
-<body class="theme-dark">
+<body class="brand-site">
 
   <!-- Loading Screen -->
   <div id="loading-screen" class="loading-screen">
@@ -93,121 +96,199 @@
       </div>
     </div>
     <div class="container hero-content position-relative text text-center text-lg-start">
-      <div class="hero-eyebrow">LUCAS TRAINER</div>
-      <h1 class="display-4 hero-title" data-gsap>BUILD STRENGTH.<br>LOSE FAT.<br>TRANSFORM YOUR LIFE.</h1>
+      <div class="hero-eyebrow">Premium Performance Coaching • Nairobi</div>
+      <h1 class="display-4 hero-title" data-gsap>TRAIN WITH<br>INTENT.<br>LIVE WITH POWER.</h1>
       <div class="title-glow" aria-hidden="true"></div>
-      <p class="lead hero-sub">Personal training and coaching designed for people who want real, lasting results. Whether your goal is fat loss, strength, confidence, or better health, Lucas builds a clear plan around your lifestyle and keeps you accountable every step of the way.</p>
-      <div class="hero-cta mt-4">
-        <a class="btn btn-primary btn-lg me-3 magnetic" id="startTraining" href="contact.html#contactForm"><span class="magnetic-target">Discuss Your Goals</span></a>
-        <a href="programs.html" class="btn btn-outline btn-lg">View Programs</a>
+      <p class="lead hero-sub">Lucas builds intelligent training systems for people who want lasting strength, better energy, and more confidence in everyday life. Every session blends smart programming, movement coaching, and accountability so you train with purpose, recover with clarity, and turn discipline into visible results that actually stick.</p>
+      <div class="hero-rotator" aria-label="Rotating coaching values">
+        <span class="hero-rotator-label" style="font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:800;letter-spacing:0.28em;">Built for</span>
+        <span class="hero-rotator-word" style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:900;letter-spacing:0.22em;">Strength</span>
       </div>
-      <div class="hero-stats d-flex justify-content-center gap-4 mt-5">
+      <div class="hero-cta mt-4">
+        <button class="btn btn-primary btn-lg me-3 open-booking magnetic" id="startTraining"><span class="magnetic-target">Start Your Transformation</span></button>
+        <a href="programs.html" class="btn btn-outline btn-lg">See Coaching Plans</a>
+      </div>
+      <div class="hero-trust" style="font-family:'Inter',sans-serif;font-size:1.12rem;font-weight:800;line-height:1.7;">Results-driven coaching for ambitious clients who want structure, momentum, and lasting performance.</div>
+      <div class="hero-stats d-flex justify-content-center gap-4 mt-5" aria-hidden="true">
         <div class="stat card-glass p-3 text-center">
-          <h2 class="h5 mb-1">Personalized</h2>
-          <div class="label muted">Plans built around your goal</div>
+          <div class="num plus" data-to="320">0</div>
+          <div class="label muted">Client Transformations</div>
         </div>
         <div class="stat card-glass p-3 text-center">
-          <h2 class="h5 mb-1">Progressive</h2>
-          <div class="label muted">Training that develops with you</div>
+          <div class="num plus" data-to="6000">0</div>
+          <div class="label muted">Training Sessions</div>
         </div>
         <div class="stat card-glass p-3 text-center">
-          <h2 class="h5 mb-1">Supported</h2>
-          <div class="label muted">Guidance and accountability</div>
+          <div class="num percent" data-to="97">0</div>
+          <div class="label muted">Success Rate</div>
+        </div>
+        <div class="stat card-glass p-3 text-center">
+          <div class="num plus" data-to="8">0</div>
+          <div class="label muted">Years Coaching</div>
         </div>
       </div>
       <!-- Profile image removed from hero for cleaner modern layout -->
     </div>
-    <div class="scroll-indicator">Scroll</div>
+    <div class="scroll-indicator">Explore More</div>
   </header>
 
   <main>
-    <!-- Trainer Introduction -->
-    <section id="trainerIntro" class="py-5">
-      <div class="container container-narrow d-flex flex-column flex-lg-row align-items-center gap-4">
-        <div class="col-lg-5">
-          <div class="card-glass text-center">
-            <img src="assets/images/Lucas.jpg" alt="Lucas - Professional Fitness Trainer" class="profile-frame" loading="lazy">
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <h2 class="heading">Your coach for real, lasting results</h2>
-          <p class="lead">Fitness is not just about looking better — it is about feeling stronger, moving better, and building confidence that lasts.</p>
-          <p>I'm Lucas, a fitness trainer helping clients in Nairobi and surrounding areas build healthy routines, improve strength, and work toward personal goals through structured coaching and consistent accountability.</p>
-          <p>Whether you want to lose weight, build muscle, improve performance, or simply feel healthier and more energized, I create a plan that fits your goals and your lifestyle.</p>
-          <ul class="list-unstyled highlights mt-3">
-            <li>• 1-on-1 personal training</li>
-            <li>• Fat-loss and body transformation coaching</li>
-            <li>• Strength & conditioning programs</li>
-            <li>• Nutrition guidance and lifestyle support</li>
-            <li>• Online and in-person coaching options</li>
+    <section class="brand-section brand-section-tight" id="trainerIntro">
+      <div class="brand-container split-grid" data-reveal>
+        <div class="image-frame"><img src="assets/images/Lucas.jpg" alt="Lucas, certified personal trainer in Nairobi" loading="lazy"></div>
+        <div>
+          <span class="eyebrow">The coach behind the method</span>
+          <div class="number-kicker">01</div>
+          <h2 class="section-heading">Train with intent. <span>Live with power.</span></h2>
+          <p class="section-copy">Lucas Training is a performance-minded coaching practice based at KAG Olympic Gym Center. Every plan is personal, every session has a reason, and every win compounds.</p>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i><span>Certified personal fitness trainer and strength coach</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Practical coaching for beginners, professionals, women, men, and athletes</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Progress built through training, nutrition, recovery, and accountability</span></li>
           </ul>
+          <a class="btn-brand-ghost" href="about.html">Meet Lucas <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </section>
 
-    <!-- Transformation Showcase -->
-    <section id="transformShow" class="py-5 bg-light">
-      <div class="container container-narrow">
-        <h2 class="section-title mb-4">Progress built one step at a time</h2>
-        <p class="lead">Sustainable progress comes from consistent training, realistic goals, and coaching that fits your life.</p>
-        <div class="comparison card-neu p-0" style="max-width:900px;margin:0 auto;">
-          <img class="before" src="assets/images/trans-before.svg" alt="Illustrative before-and-after comparison placeholder" />
-          <div class="after-wrap" style="width:50%;overflow:hidden;position:absolute;top:0;left:0;bottom:0">
-            <img class="after" src="assets/images/trans-after.svg" alt="Illustrative progress comparison placeholder" style="position:relative;left:0;"/>
-          </div>
-          <div class="handle" role="slider" aria-label="Compare illustrative progress images" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal" tabindex="0" style="position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--primary),var(--surface));transform:translateX(-50%);cursor:ew-resize"></div>
-        </div>
-        <p class="text-muted text-center mt-3">Illustrative graphic only, not a real client result. Real client stories should be published only with permission and accurate context.</p>
-      </div>
-    </section>
-
-    <!-- Featured programs -->
-    <section class="section py-5" id="programs">
-      <div class="container">
-        <h2 class="section-title mb-4" data-aos="fade-up">Featured Programs</h2>
-        <div class="row g-4" id="featuredPrograms">
-          <!-- Program cards will be injected here -->
+    <section class="brand-section" id="whyLucas">
+      <div class="brand-container">
+        <div class="section-head" data-reveal><div><span class="eyebrow">The Lucas standard</span><h2 class="section-heading">More than a workout.<br><span>A better operating system.</span></h2></div><p class="section-copy">The goal is not to chase exhaustion. It is to build the strength, energy, and confidence your life asks for.</p></div>
+        <div class="bento">
+          <article class="bento-card wide surface" data-reveal><i class="fa-solid fa-crosshairs"></i><h3>Precision over guesswork</h3><p>Clear assessments, measurable goals, and a program that changes when your body and schedule change.</p></article>
+          <article class="bento-card surface delay-1" data-reveal><i class="fa-solid fa-bolt"></i><h3>Energy that carries</h3><p>Build fitness that shows up at work, at home, and in the moments that matter.</p></article>
+          <article class="bento-card tall surface delay-2" data-reveal><i class="fa-solid fa-shield-heart"></i><h3>Coaching with standards</h3><p>Supportive does not mean easy. You will be challenged with care, coached with clarity, and never left to figure it out alone.</p></article>
+          <article class="bento-card surface delay-3" data-reveal><i class="fa-solid fa-chart-line"></i><h3>Progress you can see</h3><p>Strength, movement quality, body composition, and confidence become visible benchmarks.</p></article>
+          <article class="bento-card wide surface" data-reveal><i class="fa-solid fa-location-dot"></i><h3>Olympic, Kibera to everywhere</h3><p>Train in person at KAG Olympic Gym Center or take the same considered approach online with coaching built around your reality.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="py-5 bg-light">
-      <div class="container container-narrow">
-        <h2 class="section-title mb-4">What to expect from coaching</h2>
-        <div class="row g-3">
-          <div class="col-md-4"><div class="card-glass p-4 h-100"><h3 class="h5">Start with your goal</h3><p class="muted mb-0">Discuss your experience, priorities, and schedule before choosing a plan.</p></div></div>
-          <div class="col-md-4"><div class="card-glass p-4 h-100"><h3 class="h5">Train with a plan</h3><p class="muted mb-0">Follow structured coaching suited to your current level and preferred format.</p></div></div>
-          <div class="col-md-4"><div class="card-glass p-4 h-100"><h3 class="h5">Review and adjust</h3><p class="muted mb-0">Check progress together and adapt your approach as your needs change.</p></div></div>
-        </div>
+    <section class="brand-section" id="programs">
+      <div class="brand-container">
+        <div class="section-head" data-reveal><div><span class="eyebrow">Choose your next level</span><h2 class="section-heading">Programs with <span>momentum.</span></h2></div><a class="btn-brand-ghost" href="programs.html">Compare all programs <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="program-grid" id="featuredPrograms"></div>
       </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="py-5">
-      <div class="container text-center">
-        <div class="cta-banner">
-          <h3>Ready to start your transformation?</h3>
-          <p class="muted">Discuss your goals, schedule, and coaching options with Lucas before deciding what is right for you.</p>
-          <div class="mt-3"><a id="ctaBook" href="contact.html#contactForm" class="btn btn-primary btn-lg magnetic">Discuss Your Goals</a></div>
-        </div>
+    <section class="brand-section brand-section-tight" id="process">
+      <div class="brand-container">
+        <div class="section-head" data-reveal><div><span class="eyebrow">The process</span><h2 class="section-heading">Simple steps.<br><span>Serious change.</span></h2></div><p class="section-copy">No mystery, no random workouts. A considered path from intention to performance.</p></div>
+        <div class="process-grid" data-reveal><div class="process-step"><strong>01</strong><h3>Assess</h3><p>We understand your goal, movement, schedule, experience, and starting point.</p></div><div class="process-step"><strong>02</strong><h3>Design</h3><p>Your training, nutrition, and recovery strategy is built around your life.</p></div><div class="process-step"><strong>03</strong><h3>Coach</h3><p>Every rep is purposeful, every adjustment is explained, and every week has direction.</p></div><div class="process-step"><strong>04</strong><h3>Compound</h3><p>Small wins become stronger habits, better performance, and a new standard.</p></div></div>
       </div>
     </section>
+
+    <section class="brand-section" id="transformShow">
+      <div class="brand-container split-grid reverse" data-reveal>
+        <div><span class="eyebrow">Progress, made visible</span><h2 class="section-heading">The mirror changes when <span>the method works.</span></h2><p class="section-copy">Transformation is not a before-and-after trick. It is the accumulation of honest training, better decisions, and the confidence to stay in the process.</p><a class="btn-brand" href="transformations.html">Explore client journeys <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="comparison surface" style="max-width:900px;margin:0 auto;"><img class="before" src="assets/images/trans-before.svg" alt="Client transformation starting point" /><div class="after-wrap" style="width:50%;overflow:hidden;position:absolute;top:0;left:0;bottom:0"><img class="after" src="assets/images/trans-after.svg" alt="Client transformation progress" style="position:relative;left:0;" /></div><div class="handle" role="slider" aria-label="Drag to compare progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position:absolute;left:50%;top:0;bottom:0;width:4px;background:var(--brand-gradient);transform:translateX(-50%);cursor:ew-resize"></div></div>
+      </div>
+    </section>
+
+    <section class="brand-section brand-section-tight" id="testimonials">
+      <div class="brand-container"><div class="quote-block" data-reveal><blockquote>“I stopped waiting for motivation. I built a routine I could trust, and the results followed.”</blockquote><cite>Lucas Training client · strength & lifestyle coaching</cite></div></div>
+    </section>
+
+    <section class="brand-section" id="stories">
+      <div class="brand-container"><div class="section-head" data-reveal><div><span class="eyebrow">Client stories</span><h2 class="section-heading">Proof from the <span>people who show up.</span></h2></div><a class="btn-brand-ghost" href="testimonials.html">Read all stories <i class="fa-solid fa-arrow-right"></i></a></div><div class="story-grid"><article class="story-card surface" data-reveal><div class="stars">★★★★★</div><blockquote>“The plan was realistic, the coaching was direct, and I finally know how to train for my own body.”</blockquote><footer><img class="avatar" src="assets/images/testimonial1.svg" alt="Client avatar"><small>Weight loss client · Nairobi</small></footer></article><article class="story-card surface delay-1" data-reveal><div class="stars">★★★★★</div><blockquote>“I came for strength. I left with confidence that reaches far beyond the gym floor.”</blockquote><footer><img class="avatar" src="assets/images/testimonial2.svg" alt="Client avatar"><small>Strength client · Olympic</small></footer></article></div></div>
+    </section>
+
+    <section class="brand-section brand-section-tight" id="gallery"><div class="brand-container"><div class="section-head" data-reveal><div><span class="eyebrow">Inside the practice</span><h2 class="section-heading">A place to <span>do the work.</span></h2></div><p class="section-copy">Focused sessions, real people, and a gym floor where progress is earned.</p></div><div class="gallery-grid" data-reveal><img src="assets/images/gym 3.jpg" alt="Training floor at KAG Olympic Gym Center" loading="lazy"><img src="assets/images/teach.jpg" alt="Lucas coaching a client" loading="lazy"><img src="assets/images/gym 1.jpg" alt="Olympic gym training space" loading="lazy"><img src="assets/images/teaching.jpg" alt="Personal training session" loading="lazy"><img src="assets/images/gym 5.jpg" alt="Strength training equipment" loading="lazy"></div></div></section>
+
+    <section class="brand-section" id="journal"><div class="brand-container"><div class="section-head" data-reveal><div><span class="eyebrow">The journal</span><h2 class="section-heading">Better information.<br><span>Better training.</span></h2></div><a class="btn-brand-ghost" href="blog.html">Visit the journal <i class="fa-solid fa-arrow-right"></i></a></div><div class="article-grid"><article class="article-card surface" data-reveal><img src="assets/images/gym 4.jpg" alt="Strength training in Nairobi" loading="lazy"><div class="article-card-body"><span class="tag">Strength</span><h3>Progressive overload, without the noise</h3><p>The simple principle behind getting stronger with purpose.</p><a href="blog.html">Read article <i class="fa-solid fa-arrow-right"></i></a></div></article><article class="article-card surface delay-1" data-reveal><img src="assets/images/gym 2.jpg" alt="Fitness coaching session" loading="lazy"><div class="article-card-body"><span class="tag">Recovery</span><h3>Why sleep belongs in your program</h3><p>The overlooked performance tool hiding in plain sight.</p><a href="blog.html">Read article <i class="fa-solid fa-arrow-right"></i></a></div></article><article class="article-card surface delay-2" data-reveal><img src="assets/images/gym 6.jpg" alt="Training environment" loading="lazy"><div class="article-card-body"><span class="tag">Mindset</span><h3>Build a routine you can trust</h3><p>How consistency becomes easier when the system is yours.</p><a href="blog.html">Read article <i class="fa-solid fa-arrow-right"></i></a></div></article></div></div></section>
+
+    <section class="brand-section brand-section-tight" id="faq"><div class="brand-container split-grid"><div data-reveal><span class="eyebrow">Questions, answered</span><h2 class="section-heading">Clarity before <span>commitment.</span></h2><p class="section-copy">Start where you are. The first conversation is about finding the right fit, not forcing a package.</p><a class="btn-brand" href="contact.html">Talk to Lucas <i class="fa-solid fa-arrow-right"></i></a></div><div class="faq-list" data-reveal><div class="faq-item is-open"><button class="faq-question" type="button">Do I need gym experience?<i class="fa-solid fa-plus"></i></button><div class="faq-answer"><p>Not at all. Beginners receive the instruction, progressions, and confidence to train safely from day one.</p></div></div><div class="faq-item"><button class="faq-question" type="button">How often should I train?<i class="fa-solid fa-plus"></i></button><div class="faq-answer"><p>Most clients begin with two or three purposeful sessions per week, adjusted to their goal, recovery, and schedule.</p></div></div><div class="faq-item"><button class="faq-question" type="button">Can I train online?<i class="fa-solid fa-plus"></i></button><div class="faq-answer"><p>Yes. Online coaching includes a tailored plan, exercise guidance, check-ins, and accountability wherever you train.</p></div></div></div></div></section>
+
+    <section class="brand-section brand-section-tight"><div class="brand-container"><div class="quote-block" data-reveal><span class="eyebrow">Your next standard</span><blockquote>Ready to make your strength a daily advantage?</blockquote><div class="hero-actions"><button id="ctaBook" class="btn-brand magnetic open-booking">Book your consultation <i class="fa-solid fa-arrow-right"></i></button><a class="btn-brand-ghost" href="contact.html">View contact details</a></div></div></div></section>
   </main>
 
-  <footer class="py-5 bg-surface text">
-    <div class="container text-center">
-      <p class="mb-0">&copy; <span id="year"></span> LUCAS TRAINER</p>
-    </div>
-  </footer>
+  <footer class="page-footer"><div class="brand-container"><div class="footer-grid"><div><div class="footer-brand"><span>Lucas</span> Training</div><p>Premium personal training, strength coaching, and sustainable transformation at KAG Olympic Gym Center in Olympic, Kibera, Nairobi.</p></div><div><h4>Explore</h4><ul><li><a href="about.html">About Lucas</a></li><li><a href="services.html">Services</a></li><li><a href="programs.html">Programs</a></li><li><a href="transformations.html">Transformations</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="testimonials.html">Client stories</a></li><li><a href="blog.html">Training journal</a></li><li><a href="contact.html">Book a consultation</a></li><li><a href="contact.html">Olympic, Kibera</a></li></ul></div><div><h4>Train with clarity</h4><p>New coaching openings and practical training notes, sent occasionally.</p><a class="btn-brand-ghost" href="contact.html">Join the list <i class="fa-solid fa-arrow-right"></i></a></div></div><div class="footer-bottom"><span>&copy; <span id="year"></span> Lucas Training</span><span>KAG Olympic Gym Center · Nairobi, Kenya</span></div></div></footer>
 
+  <!-- Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-surface text">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Book Your Consultation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="bookingForm">
+            <div class="mb-3">
+              <label class="form-label">What would you like to work on?</label>
+              <select class="form-select" id="bookingProgram"></select>
+            </div>
+            <div class="row g-3">
+              <div class="col-6">
+                <label class="form-label">Preferred date</label>
+                <input type="date" class="form-control" id="bookingDate" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label">Preferred time</label>
+                <input type="time" class="form-control" id="bookingTime" required>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="form-label">Your name</label>
+              <input type="text" class="form-control" id="bookingName" required>
+            </div>
+            <div class="mt-3 d-grid">
+              <button class="btn btn-primary">Request My Consultation</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/sections.js"></script>
   <script src="assets/js/animations.js"></script>
-  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/navbar.js?v=dark-only"></script>
+  <script src="assets/js/brand.js"></script>
+  <script>
+    (() => {
+      const counters = Array.from(document.querySelectorAll('.hero-stats .num'));
+      if (!counters.length) return;
+
+      const targets = [320, 6000, 97, 8];
+      const duration = 2200;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        counters.forEach((el, index) => {
+          const target = targets[index] || 0;
+          const value = Math.round(target * eased);
+          el.textContent = value.toLocaleString('en-US');
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counters.forEach((el, index) => {
+            el.textContent = targets[index].toLocaleString('en-US');
+          });
+        }
+      }
+
+      const run = () => requestAnimationFrame(tick);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run, { once: true });
+      } else {
+        run();
+      }
+    })();
+  </script>
 </body>
 </html>

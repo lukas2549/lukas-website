@@ -1,6 +1,5 @@
 :root{
-  /* Blue performance theme tokens */
-  /* legacy color vars removed — use theme tokens in utilities.css: --primary, --surface, --accent */
+  /* Legacy compatibility tokens for the permanent dark brand system. */
   --bg: #070B14; /* Page background */
   --surface: #111A2E; /* Card / surface */
   --text: #FFFFFF; /* Primary text */
@@ -48,7 +47,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webk
 .text-muted{color:var(--muted)}
 
 /* Buttons */
-.btn-outline-light{border:1px solid rgba(4,17,36,0.06);color:var(--text);background:transparent}
 .btn-outline{border:1px solid rgba(255,255,255,0.12);color:var(--text);background:transparent;padding:0.62rem 1rem;border-radius:10px;transition:transform .18s ease,background .18s,box-shadow .18s;display:inline-flex;align-items:center;justify-content:center}
 .btn-outline:hover{background:rgba(255,255,255,0.03);transform:translateY(-3px);box-shadow:0 14px 36px rgba(30,144,255,0.06)}
 .btn-pill{border-radius:50px}
@@ -58,7 +56,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webk
 .navbar .nav-link:hover{color:var(--primary)}
 
 /* Hero */
-.hero{position:relative;overflow:hidden;background-image:url('../images/gym%206.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;/* ensure hero sits below fixed nav */height:calc(100vh - var(--nav-height));min-height:calc(100vh - var(--nav-height))}
+.hero{position:relative;overflow:hidden;background-image:url('assets/images/gym%206.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;/* ensure hero sits below fixed nav */height:calc(100vh - var(--nav-height));min-height:calc(100vh - var(--nav-height))}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .overlay{position:absolute;inset:0;z-index:2}
 .overlay::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,25,0.92) 0%, rgba(4,10,25,0.78) 40%, rgba(0,0,0,0.82) 75%);mix-blend-mode:normal;opacity:1}
@@ -82,12 +80,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webk
 /* Improved hero title readability and layout */
 .hero-title{text-shadow:0 8px 40px rgba(6,10,20,0.6);font-size:clamp(1.9rem,4.6vw,3.2rem);line-height:1.02;margin-bottom:.5rem;letter-spacing:-0.6px;will-change:transform}
 .hero-sub{max-width:64ch;margin:0 auto;color:var(--muted);will-change:transform,opacity}
+.hero-rotator{display:flex;align-items:center;justify-content:center;gap:.9rem;margin:1rem auto 1.15rem;flex-wrap:wrap}
+.hero-rotator-label{font-size:.78rem !important;font-weight:800 !important;text-transform:uppercase !important;letter-spacing:.3em !important;color:var(--muted) !important;font-family:'Montserrat',sans-serif !important}
+.hero-rotator-word{display:inline-block;min-width:8ch;color:var(--primary) !important;font-size:1.18rem !important;font-weight:900 !important;text-transform:uppercase !important;letter-spacing:.22em !important;transition:opacity .45s ease, transform .45s ease !important;font-family:'Montserrat',sans-serif !important}
+.hero-trust{margin-top:1rem;color:rgba(234,244,255,0.82) !important;font-size:1.12rem !important;font-weight:800 !important;letter-spacing:.015em !important;max-width:44rem !important;line-height:1.7 !important;font-family:'Inter',sans-serif !important}
 .hero-cta{display:flex;gap:1rem;justify-content:center;will-change:transform}
 .hero-cta .btn{transform:none;opacity:1;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .6s ease,box-shadow .4s ease;box-shadow:0 12px 36px rgba(30,144,255,0)}
 .hero-cta.show .btn{box-shadow:0 12px 40px rgba(30,144,255,0.10)}
 .hero-cta.show .btn.btn-primary{transform:scale(1.02);box-shadow:0 16px 56px rgba(30,144,255,0.14)}
 @media(min-width:992px){
   .hero-cta{justify-content:flex-start}
+  .hero-rotator{justify-content:flex-start}
   .hero-content{margin-left:6%;margin-right:0;max-width:640px;padding-left:0;padding-right:0}
   .hero h1{font-size:3.8rem}
 }
@@ -279,4 +282,5 @@ body.no-scroll{overflow:hidden}
 }
 
 .nav-links a:focus,.mobile-links a:focus{outline:3px solid rgba(30,144,255,0.18);outline-offset:4px;border-radius:8px}
+
 

@@ -1,10 +1,10 @@
 {
   "programs": [
-    {"id":"p1","title":"Weight Loss Program","excerpt":"Burn fat, boost energy, and develop sustainable healthy habits.","price":"KSh 5,000 / month","duration":"12 weeks"},
-    {"id":"p2","title":"Muscle Building Program","excerpt":"Build lean muscle mass with science-backed strength training.","price":"KSh 6,500 / month","duration":"16 weeks"},
-    {"id":"p3","title":"Strength Training","excerpt":"Increase power, endurance, and overall performance.","price":"KSh 7,500 / month","duration":"12 weeks"},
-    {"id":"p4","title":"Functional Fitness","excerpt":"Improve mobility, flexibility, and everyday movement.","price":"KSh 4,500 / month","duration":"8 weeks"},
-    {"id":"p5","title":"Athlete Development","excerpt":"Sports-specific training designed for peak performance.","price":"KSh 9,000 / month","duration":"12 weeks"},
-    {"id":"p6","title":"Women's Fitness","excerpt":"Customized training plans tailored to women's fitness goals.","price":"KSh 5,500 / month","duration":"12 weeks"}
+    {"id":"p1","title":"Weight Loss Transformation","excerpt":"Lose fat sustainably, build energy, and create habits that fit your life.","price":"KSh 5,000 / month","duration":"12 weeks"},
+    {"id":"p2","title":"Lean Muscle Program","excerpt":"Build lean muscle with progressive strength training and smart recovery.","price":"KSh 6,500 / month","duration":"16 weeks"},
+    {"id":"p3","title":"Strength & Power Program","excerpt":"Train with intent to increase strength, power, and total-body performance.","price":"KSh 7,500 / month","duration":"12 weeks"},
+    {"id":"p4","title":"Functional Fitness Program","excerpt":"Move better, improve mobility, and feel capable in everyday life.","price":"KSh 4,500 / month","duration":"8 weeks"},
+    {"id":"p5","title":"Athlete Development","excerpt":"Sports-specific coaching for speed, strength, conditioning, and confidence.","price":"KSh 9,000 / month","duration":"12 weeks"},
+    {"id":"p6","title":"Women's Wellness Program","excerpt":"A supportive, personalized plan for strength, confidence, and sustainable health.","price":"KSh 5,500 / month","duration":"12 weeks"}
   ]
 }

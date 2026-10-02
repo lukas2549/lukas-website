@@ -1,5 +1,5 @@
 /* utilities.css — Tailwind-inspired utility-first system (custom) */
-/* Design tokens and layout variables (colors set per-theme below) */
+/* Permanent Lucas Training dark design tokens. */
 :root{
   --space-unit:8px;
   --radius:12px;
@@ -10,7 +10,7 @@
   --glass-2: rgba(255,255,255,0.01);
   --shadow-1: rgba(2,6,23,0.12);
   --muted-border: rgba(255,255,255,0.03);
-  /* Color tokens — defaults (will be overridden by [data-theme]) */
+  /* Dark luxury color tokens. */
   --bg: #070B14;
   --surface: #111A2E;
   --primary: #1E90FF;
@@ -21,30 +21,6 @@
   --accent: rgba(30,144,255,0.14);
 }
 
-/* Light / Dark themes */
-[data-theme="light"]{
-  --bg: #FFFFFF;
-  --surface: #F6F8FB;
-  --primary: #1E90FF;
-  /* In light mode, body text uses the blue primary for a bold, branded look */
-  --text: #172033;
-  /* Buttons keep high contrast text */
-  --btn-text: #FFFFFF;
-  --muted: #6B7280;
-  --border: rgba(10,31,68,0.06);
-  --accent: rgba(30,144,255,0.12);
-}
-
-[data-theme="dark"]{
-  --bg: #070B14;
-  --surface: #111A2E;
-  --primary: #1E90FF;
-  --text: #FFFFFF;
-  --btn-text: var(--text);
-  --muted: #B0C4DE;
-  --border: rgba(255,255,255,0.04);
-  --accent: rgba(30,144,255,0.35);
-}
 
 /* Core page defaults */
 html,body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0}
@@ -83,8 +59,6 @@ html,body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-ap
 /* Colors and surfaces (use variables only) */
 .text{color:var(--text)}.text-primary{color:var(--primary)}.text-muted{color:var(--muted)}
 .bg{background:var(--bg)}.bg-surface{background:var(--surface)}
-.bg-light{color:#172033}
-.bg-light .lead,.bg-light .muted,.bg-light .text-muted{color:#4b5563}
 .border{border:1px solid var(--border)}.rounded{border-radius:var(--radius)}.rounded-full{border-radius:9999px}
 
 /* Buttons */

@@ -177,6 +177,78 @@ document.addEventListener('DOMContentLoaded', () => {
     rafId = requestAnimationFrame(animate);
   }
 
+  function startHeroStatCounters(){
+    const counters = Array.from(document.querySelectorAll('.hero-stats .num'));
+    if (!counters.length) return;
+
+    counters.forEach((el, index) => {
+      const target = Number(el.getAttribute('data-to') || 0);
+      const duration = 1800 + index * 220;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        el.textContent = value.toLocaleString('en-US');
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target.toLocaleString('en-US');
+        }
+      }
+
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Rotating hero-value words for a subtle premium motion accent
+  function setupHeroRotator(){
+    const wordEl = document.querySelector('.hero-rotator-word');
+    const labelEl = document.querySelector('.hero-rotator-label');
+    const trustEl = document.querySelector('.hero-trust');
+
+    if (labelEl) {
+      labelEl.style.fontFamily = "'Montserrat', sans-serif";
+      labelEl.style.fontSize = '0.82rem';
+      labelEl.style.fontWeight = '800';
+      labelEl.style.letterSpacing = '0.28em';
+    }
+
+    if (wordEl) {
+      wordEl.style.fontFamily = "'Montserrat', sans-serif";
+      wordEl.style.fontSize = '1.18rem';
+      wordEl.style.fontWeight = '900';
+      wordEl.style.letterSpacing = '0.22em';
+    }
+
+    if (trustEl) {
+      trustEl.style.fontFamily = "'Inter', sans-serif";
+      trustEl.style.fontSize = '1.12rem';
+      trustEl.style.fontWeight = '800';
+      trustEl.style.lineHeight = '1.7';
+    }
+
+    if (!wordEl || prefersReduced) return;
+
+    const values = ['Strength', 'Discipline', 'Confidence', 'Performance', 'Transformation', 'Results'];
+    let index = 0;
+
+    setInterval(() => {
+      wordEl.style.opacity = '0';
+      wordEl.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        index = (index + 1) % values.length;
+        wordEl.textContent = values[index];
+        wordEl.style.opacity = '1';
+        wordEl.style.transform = 'translateY(0)';
+      }, 220);
+    }, 2200);
+  }
+
   // GSAP-driven streaks and floating icons
   function setupLayerAnimations(){
     if (typeof gsap === 'undefined' || prefersReduced) return;
@@ -201,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // drastically lower particles
       particles.length = Math.min(particles.length, 12);
     }
+    setupHeroRotator();
     setupLayerAnimations();
     rafId = requestAnimationFrame(animate);
   }
@@ -252,34 +325,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  if (tl) {
     // slow breathing/zoom on layers (long-running subtle)
     tl.to('.hero-layers',{scale:1.02,duration:20,ease:'none'},0);
 
     // keep title glow tween in timeline (background effect)
     tl.to('.title-glow',{x:'120%',duration:0.9,ease:'power2.inOut',opacity:1}, 0.6);
+  }
 
-    // CTA subtle pulse repeat
-    if(!prefersReduced){
-      gsap.to('.hero-cta .btn.btn-primary',{boxShadow:'0 26px 80px rgba(30,144,255,0.12)',scale:1.02,repeat:-1,yoyo:true,duration:2.8,ease:'power1.inOut',delay:1.8});
-    }
+  // CTA subtle pulse repeat
+  if(!prefersReduced && window.gsap){
+    gsap.to('.hero-cta .btn.btn-primary',{boxShadow:'0 26px 80px rgba(30,144,255,0.12)',scale:1.02,repeat:-1,yoyo:true,duration:2.8,ease:'power1.inOut',delay:1.8});
+  }
 
-    // Scroll transitions using ScrollTrigger (if available)
-    if (window.ScrollTrigger){
-      ScrollTrigger.create({
-        trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true,
-        onUpdate: self=>{
-          // subtle content parallax tied to progress
-          const p = self.progress;
-          const titleEl = document.querySelector('.hero-title');
-          const subEl = document.querySelector('.hero-sub');
-          const ctaEl = document.querySelector('.hero-cta');
-          if(titleEl) titleEl.style.transform = `translateY(${ -p * 110 }px) scale(${1 - p*0.06})`;
-          if(subEl) subEl.style.transform = `translateY(${ p * 48 }px)`;
-          if(ctaEl) ctaEl.style.transform = `translateY(${ p * 64 }px)`;
-        }
-      });
+  // Scroll transitions using ScrollTrigger (if available)
+  if (window.ScrollTrigger){
+    ScrollTrigger.create({
+      trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true,
+      onUpdate: self=>{
+        // subtle content parallax tied to progress
+        const p = self.progress;
+        const titleEl = document.querySelector('.hero-title');
+        const subEl = document.querySelector('.hero-sub');
+        const ctaEl = document.querySelector('.hero-cta');
+        if(titleEl) titleEl.style.transform = `translateY(${ -p * 110 }px) scale(${1 - p*0.06})`;
+        if(subEl) subEl.style.transform = `translateY(${ p * 48 }px)`;
+        if(ctaEl) ctaEl.style.transform = `translateY(${ p * 64 }px)`;
+      }
+    });
 
-      // gentle background layer parallax/scale
+    // gentle background layer parallax/scale
+    if (window.gsap) {
       gsap.to('.hero-layers',{scale:1.06,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
     }
   }
@@ -381,18 +457,18 @@ document.addEventListener('DOMContentLoaded', () => {
           await new Promise(res => gsap.to(statsEls,{opacity:1,y:0,stagger:0.08,duration:0.84,ease:'power3.out',onComplete:res}));
         } else { statsEls.forEach(s=>{ s.style.opacity='1'; s.style.transform='none'; }); }
 
-        const counters = document.querySelectorAll('.num');
-        counters.forEach(el=>{
-          const to = parseInt(el.getAttribute('data-to')||el.textContent,10) || 0;
-          if(window.gsap && window.matchMedia && window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
-            gsap.fromTo({value:0},{value:to,duration:2.2,ease:'power1.out',onUpdate:function(){ el.textContent = Math.floor(this.targets()[0].value); }});
-          } else { el.textContent = to; }
-        });
+        startHeroStatCounters();
       }
     }
 
     // Start the sequence
     playHeroSequence().catch(err=>console.error('Hero sequence error:', err));
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      startHeroStatCounters();
+    }, 700);
+  });
 
   // CTA ripple interaction (minimal, GPU-friendly)
   document.querySelectorAll('.btn').forEach(btn=>{

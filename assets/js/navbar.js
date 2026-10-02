@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   nav.className = 'nav nav-modern';
   nav.innerHTML = `
     <div class="container nav-inner">
-      <a href="index.html" class="nav-brand" aria-label="Lucas Trainer home">
+      <a href="index.html" class="nav-brand" aria-label="Lucas Training home">
         <span class="nav-icon" aria-hidden="true"><i class="fas fa-dumbbell"></i></span>
-        <span class="nav-title"><span class="brand-lucas text-primary">Lucas</span> <span class="brand-training text">Trainer</span></span>
+        <span class="nav-title"><span class="brand-lucas text-primary">Lucas</span> <span class="brand-training text">Training</span></span>
       </a>
       <nav aria-label="Primary navigation">
         <ul class="nav-links">
@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </ul>
       </nav>
       <div class="nav-actions">
-        <a class="btn btn-primary magnetic" href="contact.html#contactForm">Discuss Your Goals</a>
-        <button id="themeToggle" class="btn btn-outline" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="btn btn-primary magnetic" id="bookNow">Book Session</button>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
           <span class="hamburger"><span></span><span></span><span></span></span>
         </button>
@@ -40,26 +39,18 @@ document.addEventListener('DOMContentLoaded', function () {
           <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div style="margin-top:28px"><a href="contact.html#contactForm" class="btn btn-primary">Discuss Your Goals</a></div>
+        <div style="margin-top:28px"><a href="contact.html" class="btn btn-primary">Book Session</a></div>
       </div>
     </div>
   `;
 
   // Insert nav at top of body
   document.body.insertBefore(nav, document.body.firstChild);
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
-
-  // Ensure theme toggle displays correct icon according to current theme
-  const _currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('site-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  const _themeBtn = document.getElementById('themeToggle');
-  if(_themeBtn){
-    _themeBtn.innerHTML = _currentTheme === 'dark' ? '<i class="fas fa-sun" aria-hidden="true"></i>' : '<i class="fas fa-moon" aria-hidden="true"></i>';
-  }
 
   const navToggle = document.getElementById('navToggle');
   const navOverlay = document.getElementById('navOverlay');
   const navClose = document.getElementById('navClose');
+  const bookNow = document.getElementById('bookNow');
 
   function openMobile() {
     navToggle.classList.add('open');
@@ -81,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   navClose.addEventListener('click', closeMobile);
   navOverlay.addEventListener('click', function (e) { if (e.target === navOverlay) closeMobile(); });
+
+  // Book button opens existing booking modal if present
+  if (bookNow) bookNow.addEventListener('click', () => {
+    const bookingModalEl = document.getElementById('bookingModal');
+    if (bookingModalEl && window.bootstrap) new bootstrap.Modal(bookingModalEl).show(); else window.location.href = 'contact.html';
+  });
 
   // Active link highlighting
   const links = document.querySelectorAll('.nav-links a');

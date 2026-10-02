@@ -11,31 +11,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  // Booking modal trigger
+  const bookBtn = document.getElementById('bookBtn') || document.getElementById('openBooking');
+  const bookingModal = document.getElementById('bookingModal');
+  if (bookBtn && bookingModal) {
+    bookBtn.addEventListener('click', () => {
+      const bs = new bootstrap.Modal(bookingModal);
+      bs.show();
+    });
+  }
+
   // Populate programs from JSON if available
-  fetch('assets/data/programs.json').then(r => {
-    if (!r.ok) throw new Error(`Program data request failed: ${r.status}`);
-    return r.json();
-  }).then(data => {
+  fetch('assets/data/programs.json').then(r => r.json()).then(data => {
     const featured = document.getElementById('featuredPrograms');
+    const bookingSelect = document.getElementById('bookingProgram') || document.getElementById('programSelect');
     if (featured) {
       featured.innerHTML = '';
       data.programs.slice(0, 6).forEach(p => {
-        const col = document.createElement('div'); col.className = 'col-md-4';
-        col.innerHTML = `<div class="program-card p-4 h-100">
-          <h4 class="title mb-2">${p.title}</h4>
-          <p class="excerpt mb-3">${p.excerpt}</p>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <div class="price text-primary">${p.price}</div>
-            <a href="programs.html" class="btn btn-outline">Learn</a>
-          </div>
-        </div>`;
+        const col = document.createElement('article'); col.className = 'program-tile surface';
+        col.innerHTML = `<span class="program-number">${String(data.programs.indexOf(p) + 1).padStart(2, '0')} / PROGRAM</span>
+          <h3>${p.title}</h3>
+          <p>${p.excerpt}</p>
+          <div class="tile-foot"><span>${p.price}</span><a href="programs.html">Explore <i class="fa-solid fa-arrow-right"></i></a></div>`;
         featured.appendChild(col);
       });
     }
-  }).catch(error => {
-    const featured = document.getElementById('featuredPrograms');
-    if (featured) featured.textContent = 'Programs are temporarily unavailable. Please visit the Programs page.';
-    console.error('Unable to load featured programs.', error);
+    if (bookingSelect && data.programs) {
+      bookingSelect.innerHTML = data.programs.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+    }
+  }).catch(() => {
+    // silent fail for now
   });
 
   // AOS init
