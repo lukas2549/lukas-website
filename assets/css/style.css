@@ -1,0 +1,282 @@
+:root{
+  /* Blue performance theme tokens */
+  /* legacy color vars removed — use theme tokens in utilities.css: --primary, --surface, --accent */
+  --bg: #070B14; /* Page background */
+  --surface: #111A2E; /* Card / surface */
+  --text: #FFFFFF; /* Primary text */
+  --muted: rgba(176,196,222,0.6); /* Soft gray text */
+  --success: #00C48C;
+
+  /* Spatial scale */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  /* Typography scale */
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --display-1: 3rem;
+
+  /* Radius / Elevation */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --elevation-1: 0 8px 28px rgba(0,0,0,0.5);
+
+  /* Glow */
+  --primary-glow: rgba(30,144,255,0.12);
+
+  /* Breakpoints */
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+/* offset page content to account for fixed modern navbar */
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;margin:0;padding-top:var(--nav-height)}
+
+/* Typography */
+.brand{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--primary);letter-spacing:1px}
+.heading{font-family:'Montserrat',sans-serif}
+.lead{color:var(--muted);font-size:var(--text-lg)}
+.text-muted{color:var(--muted)}
+
+/* Buttons */
+.btn-outline-light{border:1px solid rgba(4,17,36,0.06);color:var(--text);background:transparent}
+.btn-outline{border:1px solid rgba(255,255,255,0.12);color:var(--text);background:transparent;padding:0.62rem 1rem;border-radius:10px;transition:transform .18s ease,background .18s,box-shadow .18s;display:inline-flex;align-items:center;justify-content:center}
+.btn-outline:hover{background:rgba(255,255,255,0.03);transform:translateY(-3px);box-shadow:0 14px 36px rgba(30,144,255,0.06)}
+.btn-pill{border-radius:50px}
+
+/* Navbar */
+.navbar .nav-link{color:var(--text);transition:color .18s}
+.navbar .nav-link:hover{color:var(--primary)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background-image:url('../images/gym%206.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;/* ensure hero sits below fixed nav */height:calc(100vh - var(--nav-height));min-height:calc(100vh - var(--nav-height))}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.overlay{position:absolute;inset:0;z-index:2}
+.overlay::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,25,0.92) 0%, rgba(4,10,25,0.78) 40%, rgba(0,0,0,0.82) 75%);mix-blend-mode:normal;opacity:1}
+.overlay::after{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 50% 22%, rgba(30,144,255,0.06), transparent 30%);mix-blend-mode:screen;opacity:0.85}
+.hero-layers{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.hero-layers .mesh{mix-blend-mode:overlay;opacity:0.95;filter:blur(18px);transform:translateZ(0)}
+.hero-layers .particles{mix-blend-mode:screen;opacity:0.95;filter:blur(6px)}
+.hero-streaks,.hero-shapes{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-content{position:relative;z-index:4;padding-top:4rem;padding-bottom:3.5rem;max-width:1100px;margin:0 auto;padding-left:1rem;padding-right:1rem}
+
+/* Title glow sweep */
+.title-glow{position:absolute;left:-30%;top:6%;width:60%;height:48%;pointer-events:none;z-index:6;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg, transparent 0%, rgba(30,144,255,0.18) 45%, rgba(255,255,255,0.12) 55%, transparent 100%);filter:blur(36px);transform:translateX(-110%)}
+
+/* CTA ripple and containment */
+.hero-cta .btn{position:relative;overflow:hidden}
+.btn-ripple{position:absolute;border-radius:50%;transform:scale(0);background:radial-gradient(circle, rgba(255,255,255,0.28), rgba(30,144,255,0.18) 30%, rgba(30,144,255,0.06) 60%, transparent 70%);pointer-events:none;animation:btn-ripple 900ms cubic-bezier(.2,.9,.2,1);mix-blend-mode:screen;opacity:0.95}
+@keyframes btn-ripple{0%{transform:scale(0);opacity:0.9}30%{transform:scale(0.6);opacity:0.7}100%{transform:scale(1.8);opacity:0}}
+.hero h1,.display-4{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:-1px;font-size:var(--display-1);line-height:1}
+
+/* Improved hero title readability and layout */
+.hero-title{text-shadow:0 8px 40px rgba(6,10,20,0.6);font-size:clamp(1.9rem,4.6vw,3.2rem);line-height:1.02;margin-bottom:.5rem;letter-spacing:-0.6px;will-change:transform}
+.hero-sub{max-width:64ch;margin:0 auto;color:var(--muted);will-change:transform,opacity}
+.hero-cta{display:flex;gap:1rem;justify-content:center;will-change:transform}
+.hero-cta .btn{transform:none;opacity:1;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .6s ease,box-shadow .4s ease;box-shadow:0 12px 36px rgba(30,144,255,0)}
+.hero-cta.show .btn{box-shadow:0 12px 40px rgba(30,144,255,0.10)}
+.hero-cta.show .btn.btn-primary{transform:scale(1.02);box-shadow:0 16px 56px rgba(30,144,255,0.14)}
+@media(min-width:992px){
+  .hero-cta{justify-content:flex-start}
+  .hero-content{margin-left:6%;margin-right:0;max-width:640px;padding-left:0;padding-right:0}
+  .hero h1{font-size:3.8rem}
+}
+
+/* Cards & Surfaces */
+.card-glass{background:linear-gradient(180deg,var(--accent),rgba(255,255,255,0.01));border-radius:var(--radius-md);padding:var(--space-md);backdrop-filter:blur(6px);box-shadow:var(--elevation-1);border:1px solid var(--border)}
+.card-neu{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);border-radius:var(--radius-lg);box-shadow:6px 6px 18px rgba(0,0,0,0.6),-6px -6px 18px rgba(255,255,255,0.02)}
+
+/* Stat blocks */
+.stats{display:flex;gap:var(--space-md);margin-top:var(--space-md);flex-wrap:wrap}
+.stat{flex:1;padding:var(--space-sm);border-radius:12px}
+.num{font-family:'Oswald',sans-serif;font-size:2rem;color:var(--primary)}
+/* Suffix helpers for counters */
+.num.plus::after{content:'+';font-size:1rem;margin-left:6px;color:var(--primary)}
+.num.percent::after{content:'%';font-size:1rem;margin-left:4px;color:var(--primary)}
+
+.accent-glow{box-shadow:0 8px 40px var(--accent)}
+/* backward-compat alias for templates using .gold-glow */
+.gold-glow{box-shadow:0 8px 40px var(--accent)}
+.hover-glow:hover{box-shadow:0 18px 60px var(--accent);transform:translateY(-6px)}
+
+/* Magnetic button helper (JS will attach interactions) */
+.magnetic{position:relative;overflow:hidden}
+.magnetic .magnetic-target{position:relative;z-index:2}
+.magnetic::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--mx,50%) var(--my,50%), var(--accent), transparent 40%);opacity:0;transition:opacity .25s}
+.magnetic:hover::after{opacity:1}
+
+/* Scroll progress */
+#scrollProgress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),transparent);width:0%;z-index:9999}
+
+/* Focus & Accessibility */
+:focus{outline:none}
+button:focus, a:focus, input:focus{box-shadow:0 0 0 3px rgba(30,144,255,0.12);border-radius:8px}
+
+/* Loading Screen */
+.loading-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:2000}
+.loader{display:flex;gap:8px}
+.loader .dot{width:12px;height:12px;background:var(--primary);border-radius:50%;animation:blink 1s infinite}
+@keyframes blink{0%{opacity:0.2}50%{opacity:1}100%{opacity:0.2}}
+
+/* Utility helpers */
+.w-100{width:100%}
+.container-narrow{max-width:1100px;margin:0 auto}
+.muted{color:var(--muted)}
+.text-success{color:var(--success)}
+
+/* Skeleton */
+.skeleton{background:linear-gradient(90deg,#0f0f0f 0%, #141414 50%, #0f0f0f 100%);background-size:200% 100%;animation:shimmer 1.6s linear infinite;border-radius:8px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Footer */
+footer{border-top:1px solid rgba(255,255,255,0.03)}
+
+/* Responsive tweaks */
+@media(min-width:992px){
+  .hero h1{font-size:3.2rem}
+}
+@media(min-width:1400px){
+  /* Slightly reduce the H1 at very wide viewports to avoid pushing content down */
+  .hero h1{font-size:3.0rem}
+}
+
+/* Navbar scrolled state */
+.navbar.scrolled{background:linear-gradient(180deg,rgba(234,244,255,0.95),rgba(234,244,255,0.9));box-shadow:0 8px 30px rgba(4,17,36,0.06);backdrop-filter:blur(6px);transition:all .22s ease}
+
+/* Fallback when hero video not available: keep background image, increase overlay darkness for readability */
+.hero-no-video{/* no-op: background image set on .hero */}
+.hero-no-video .overlay::before{background:linear-gradient(180deg, rgba(4,10,25,0.92) 0%, rgba(4,10,25,0.75) 40%, rgba(0,0,0,0.75) 75%);opacity:1}
+.hero-no-video .overlay::after{opacity:0.85}
+
+/* Profile frame for trainer images */
+.profile-frame{
+  width:160px;
+  height:160px;
+  max-width:100%;
+  border-radius:50%;
+  object-fit:cover;
+  display:inline-block;
+  border:4px solid rgba(255,255,255,0.03);
+  box-shadow:0 8px 24px rgba(30,144,255,0.12),0 0 0 6px rgba(30,144,255,0.06);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+@media(max-width:576px){
+  .profile-frame{width:120px;height:120px}
+}
+
+/* Hero figure (profile image plus glow) */
+.hero-figure{position:absolute;right:2%;top:0;bottom:0;z-index:1;display:flex;align-items:center;justify-content:flex-end;pointer-events:none;width:82vw;max-width:2000px}
+.hero-figure .hero-profile{width:100%;height:100%;display:block;overflow:visible;border-radius:0;border:0;box-shadow:none;padding:0;background:transparent}
+.hero-figure .profile-frame{width:100%;height:100%;display:block;object-fit:contain;object-position:right center;border-radius:0;max-width:none}
+
+/* Premium hero enhancements */
+.hero-streaks{pointer-events:none;z-index:3}
+.hero-streaks .streak{position:absolute;left:-40%;transform:translate3d(0,0,0);will-change:transform,opacity;filter:blur(18px);background:linear-gradient(90deg,transparent 0%, rgba(30,144,255,0.22) 40%, rgba(255,255,255,0.12) 60%, transparent 100%);opacity:0.12}
+.hero-streaks .streak-1{top:18%;width:36%;height:10px;mix-blend-mode:screen;opacity:0.16}
+.hero-streaks .streak-2{top:42%;width:28%;height:7px;opacity:0.10}
+.hero-streaks .streak-3{top:66%;width:44%;height:12px;opacity:0.08}
+
+.hero-shapes .float-icon{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 14px 40px rgba(6,10,20,0.6);transform:translate3d(0,0,0);will-change:transform,opacity;opacity:0.95;mix-blend-mode:screen;border:1px solid rgba(255,255,255,0.03)}
+.hero-shapes .icon-1{left:10%;top:28%}
+.hero-shapes .icon-2{left:28%;top:10%}
+.hero-shapes .icon-3{left:60%;top:30%}
+.hero-shapes .icon-4{left:78%;top:58%}
+
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+.hero-shapes .float-icon{animation:floaty 6s ease-in-out infinite}
+.hero-shapes .float-icon:nth-child(odd){animation-duration:5.2s}
+.hero-shapes .float-icon:nth-child(even){animation-duration:7s}
+
+/* Neon stat cards */
+.hero-stats .stat{position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px 22px;overflow:visible;backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(3,7,18,0.6);border:1px solid rgba(255,255,255,0.04);transition:transform .28s ease,box-shadow .28s ease}
+.hero-stats .stat > *{position:relative;z-index:2}
+.hero-stats .stat::before{content:'';position:absolute;inset:-2px;border-radius:14px;background:linear-gradient(90deg, rgba(30,144,255,0.06), rgba(30,144,255,0.28) 30%, rgba(255,255,255,0.06) 60%, rgba(30,144,255,0.22) 100%);filter:blur(10px);opacity:0.9;mix-blend-mode:screen;pointer-events:none;z-index:1;animation:neon-border 3s linear infinite;background-size:200% 100%}
+@keyframes neon-border{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-stats .stat:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(30,144,255,0.14)}
+
+/* Magnetic CTA enhancements (JS updates --mx/--my variables) */
+.magnetic{--mx:0px;--my:0px}
+.magnetic .magnetic-target{transition:transform .22s cubic-bezier(.2,.9,.2,1)}
+.magnetic:hover .magnetic-target{transform:translate3d(var(--mx),var(--my),0) scale(1.02)}
+
+/* Scroll indicator arrow */
+.scroll-indicator{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;color:rgba(255,255,255,0.34);font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center;gap:8px;opacity:0.95}
+.scroll-indicator::before{content:'';display:inline-block;width:14px;height:14px;border-left:2px solid rgba(255,255,255,0.36);border-bottom:2px solid rgba(255,255,255,0.36);transform:rotate(-45deg);margin-left:4px;animation:scroll-bob 1.6s infinite}
+@keyframes scroll-bob{0%{transform:translateY(0) rotate(-45deg);opacity:0.75}50%{transform:translateY(-8px) rotate(-45deg);opacity:1}100%{transform:translateY(0) rotate(-45deg);opacity:0.75}}
+
+/* Lightweight mobile / reduced visuals */
+@media(max-width:991px){
+  .hero-shapes .float-icon{display:none}
+  .hero-streaks{opacity:0.6}
+  .hero-sub{font-size:0.95rem}
+  .hero-cta{flex-direction:column;align-items:center}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-shapes .float-icon, .hero-streaks .streak, .hero-layers, .hero-layers *{animation:none !important;transition:none !important}
+}
+
+/* Reduce heavy visuals on small screens */
+@media(max-width:991px){
+  .hero-figure{display:none}
+}
+
+/* Navigation / Header - Modern premium navbar */
+:root{
+  --nav-blue: var(--primary);
+  --nav-deep: var(--surface);
+  --nav-bg: rgba(7,11,20,0.6);
+  --nav-text: #FFFFFF;
+  --nav-muted: #B0C4DE;
+  --nav-height: 88px;
+}
+
+html{scroll-behavior:smooth}
+
+.nav-modern{position:fixed;top:0;left:0;right:0;z-index:9999;height:var(--nav-height);display:flex;align-items:center;transition:all .28s ease;background:linear-gradient(180deg, rgba(17,17,17,0.55), rgba(17,17,17,0.45));backdrop-filter:blur(10px) saturate(120%);border-bottom:1px solid rgba(255,255,255,0.03);padding:0}
+.nav-modern .nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--nav-text)}
+.nav-icon{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(30,144,255,0.06);color:var(--nav-blue);font-size:18px}
+.nav-title{display:flex;align-items:baseline;gap:6px;font-family:'Montserrat',sans-serif}
+.brand-lucas{color:var(--nav-blue);font-weight:800;letter-spacing:0.6px;font-size:clamp(1rem,1.6vw,1.25rem)}
+.brand-training{color:var(--nav-text);font-weight:700;font-size:clamp(0.95rem,1.4vw,1.05rem)}
+.nav-links{display:flex;gap:22px;margin:0;padding:0;list-style:none;align-items:center}
+.nav-links li{position:relative}
+.nav-links a{position:relative;display:inline-block;color:var(--nav-text);text-decoration:none;padding:8px 6px;font-weight:600;letter-spacing:0.2px;transition:color .18s,transform .18s}
+.nav-links a::after{content:'';position:absolute;left:50%;bottom:-8px;transform:translateX(-50%) scaleX(0);transform-origin:center;width:70%;height:3px;background:linear-gradient(90deg,var(--nav-blue),rgba(30,144,255,0.9));transition:transform .28s cubic-bezier(.2,.9,.2,1);border-radius:2px}
+.nav-links a:hover::after,.nav-links a.active::after{transform:translateX(-50%) scaleX(1)}
+.nav-links a:hover{transform:scale(1.03);color:var(--nav-blue)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn-book{display:none}
+.nav-modern.nav-scrolled{background:rgba(11,11,11,0.92);box-shadow:0 8px 30px rgba(4,17,36,0.5)}
+.nav-toggle{background:none;border:0;display:flex;align-items:center;justify-content:center;padding:8px 12px;color:var(--nav-text)}
+.hamburger span{width:22px;height:2px;background:var(--nav-text);display:block;margin:4px 0;transition:all .32s cubic-bezier(.2,.9,.2,1);border-radius:2px}
+.nav-toggle.open .hamburger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle.open .hamburger span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.open .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-mobile-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,11,20,0.98);opacity:0;pointer-events:none;transform:translateY(-12px);transition:all .32s cubic-bezier(.2,.9,.2,1);z-index:9998}
+.nav-mobile-overlay.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nav-mobile-inner{max-width:720px;width:100%;padding:40px 28px;text-align:center}
+.mobile-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.mobile-links a{color:var(--nav-text);text-decoration:none;font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem)}
+.nav-mobile-close{position:absolute;top:18px;right:18px;background:none;border:0;color:var(--nav-text);font-size:36px}
+body.no-scroll{overflow:hidden}
+
+@media (max-width:991px){
+  :root{--nav-height:72px}
+  .nav-links{display:none}
+  .nav-brand .brand-lucas{font-size:1.05rem}
+}
+
+.nav-links a:focus,.mobile-links a:focus{outline:3px solid rgba(30,144,255,0.18);outline-offset:4px;border-radius:8px}
+

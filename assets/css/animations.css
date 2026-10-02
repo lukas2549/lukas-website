@@ -1,0 +1,45 @@
+/* Animations and AOS overrides */
+
+[data-aos]{opacity:0;transition-property:opacity,transform}
+
+/* Hero initial state for GSAP reveal */
+.hero-title{transform:translateY(8px);opacity:1;z-index:3;position:relative;text-shadow:0 6px 20px rgba(2,6,23,0.6);font-size:clamp(3rem, 8vw, 7rem);line-height:0.98}
+
+/* Word-level reveal helpers */
+.hero-line{position:relative;display:block;white-space:nowrap;overflow:visible;opacity:0;transform:translateY(8px)}
+.hero-word{display:inline-block;padding-right:6px;font-size:clamp(3rem, 8vw, 7rem);line-height:0.98;font-weight:900;letter-spacing:-0.02em}
+@media(min-width:1200px){.hero-word{font-size:clamp(3.6rem, 6.2vw, 8rem)}}
+
+/* Blue glow for dark theme */
+[data-theme="dark"] .hero-title .hero-word{filter:drop-shadow(0 8px 32px rgba(30,144,255,0.06))}
+
+/* Soft glow behind title */
+.hero-title::before{content:'';position:absolute;left:50%;top:40%;transform:translateX(-50%);width:60%;height:220px;background:radial-gradient(ellipse at center, rgba(30,144,255,0.06), transparent 40%);z-index:1;pointer-events:none}
+
+/* Floating decorative shapes (created dynamically) */
+.float-shape{pointer-events:none;mix-blend-mode:screen}
+
+/* Scroll indicator */
+.scroll-indicator{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);color:var(--muted);font-weight:700;background:rgba(255,255,255,0.02);padding:8px 14px;border-radius:30px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(30,144,255,0.04);}
+
+@media (prefers-reduced-motion: reduce){
+	.hero-word{transition:none}
+	.float-shape{animation:none}
+}
+
+/* Eyebrow (small label above headline) */
+.hero-eyebrow{font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.26em;color:var(--muted);opacity:0;transform:translateY(-8px);margin-bottom:0.6rem}
+
+/* Description immediate state for animated reveal */
+.hero-sub{opacity:0;transform:translateY(12px);max-width:700px;margin:0 0 12px 0}
+
+/* CTA initial state for reveal */
+.hero-cta .btn{opacity:0;transform:translateY(12px)}
+
+/* Responsive grid for hero stats: mobile/tablet 2x2, desktop 4 columns */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start;justify-items:start;margin-top:1.25rem}
+.hero-stats .stat{min-width:0;max-width:none;width:auto;justify-self:start}
+@media(min-width:992px){
+	.hero-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+}
+

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact Lucas Trainer | Start a Coaching Conversation</title>
+  <meta name="description" content="Get in touch with Lucas Trainer to discuss personal training, fitness coaching, your goals, and available session times in Nairobi or online.">
+  <!-- Critical inline CSS: ensures readable fonts/colors before main CSS loads -->
+  <style>
+    html,body{background:#070B14;color:#FFFFFF;font-family:Inter,Arial,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+    a{color:var(--primary)}
+    img{max-width:100%;height:auto;display:block}
+    .btn{font-family:inherit}
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="preload" href="assets/css/style.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+  <script src="assets/js/theme.js" defer></script>
+  <script src="assets/js/ui.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <header class="py-6 bg-light">
+      <div class="container">
+        <p class="text-primary text-uppercase fw-bold">Get started</p>
+        <h1 class="display-4">Let’s talk about your goals</h1>
+        <p class="lead">Share what you want to work on and Lucas can help you understand the available coaching options and next steps.</p>
+      </div>
+    </header>
+
+    <main class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2>Request a consultation</h2>
+          <p>Tell Lucas a little about your goals and preferred training option. There is no commitment to enrol.</p>
+
+          <div id="contactForm" class="row g-3">
+            <div class="col-12">
+              <label class="form-label" for="contactName">Name</label>
+              <input class="form-control" id="contactName" name="name" autocomplete="name" required>
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="contactPhone">Phone</label>
+              <input class="form-control" id="contactPhone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="contactEmail">Email (optional)</label>
+              <input type="email" class="form-control" id="contactEmail" name="email" autocomplete="email">
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contactGoal">What would you like help with?</label>
+              <select class="form-select" id="contactGoal" name="goal">
+                <option value="">Choose a goal (optional)</option>
+                <option>Fat loss</option>
+                <option>Muscle building</option>
+                <option>Strength and conditioning</option>
+                <option>General fitness</option>
+                <option>Online coaching</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contactProgram">Program of interest (optional)</label>
+              <select class="form-select" id="contactProgram" name="program">
+                <option value="">Choose a program (optional)</option>
+                <option>Weight Loss Program</option>
+                <option>Muscle Building Program</option>
+                <option>Strength Training</option>
+                <option>Functional Fitness</option>
+                <option>Athlete Development</option>
+                <option>Women's Fitness</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contactMessage">Anything else Lucas should know?</label>
+              <textarea class="form-control" id="contactMessage" name="message" rows="4"></textarea>
+            </div>
+            <div class="col-12 card-glass p-3">
+              <p class="mb-0"><strong>Online enquiry delivery is not connected yet.</strong> This form cannot send your details until a business email or WhatsApp destination is configured.</p>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="button" disabled>Enquiry sending not configured</button>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h3>What happens next?</h3>
+            <ol>
+              <li>Discuss your goal, experience, and schedule.</li>
+              <li>Review coaching options and confirm the price and availability.</li>
+              <li>Choose whether you want to get started.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <h3>Training location</h3>
+          <p>In-person coaching is available in Olympic, Kibera, Nairobi. Exact venue and session times are confirmed when arranging a consultation.</p>
+          <p><a class="btn btn-outline" href="https://www.openstreetmap.org/search?query=Olympic%2C%20Kibera%2C%20Nairobi" target="_blank" rel="noopener noreferrer">View Olympic, Kibera on OpenStreetMap</a></p>
+
+          <section class="mt-4 card-glass p-4">
+            <h4>Prefer online coaching?</h4>
+            <p class="mb-0">Mention that in your enquiry so Lucas can discuss remote coaching options.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script>
+      const requestedProgram = new URLSearchParams(window.location.search).get('program');
+      const programSelect = document.getElementById('contactProgram');
+      if (requestedProgram && programSelect) {
+        const matchingOption = Array.from(programSelect.options).find(option => option.value === requestedProgram || option.text === requestedProgram);
+        if (matchingOption) programSelect.value = matchingOption.value;
+      }
+    </script>
+    <footer class="py-4 mt-5 bg-surface text">
+      <div class="container text-center"><p class="mb-0">&copy; <span id="year"></span> LUCAS TRAINER</p></div>
+    </footer>
+    <script src="assets/js/navbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+/* Component-level styles for the design system */
+
+/* Premium program card */
+.program-card{border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--glass-1), var(--glass-2));padding:18px;min-height:220px}
+.program-card .title{font-family:'Montserrat',sans-serif;font-weight:800;margin-bottom:8px}
+.program-card .excerpt{color:var(--muted);flex:1}
+.program-card .price{font-family:'Oswald',sans-serif;color:var(--primary);font-size:1.25rem}
+
+/* Timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:3px;background:linear-gradient(var(--primary), transparent)}
+.timeline-item{position:relative;margin-bottom:20px}
+.timeline-item .dot{position:absolute;left:-2px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--primary)}
+
+/* Badge */
+.badge-gold{background:linear-gradient(90deg,var(--primary),var(--surface));color:var(--text);padding:6px 10px;border-radius:999px;font-weight:700}
+
+/* Testimonial */
+.testimonial-card{display:flex;gap:12px;align-items:flex-start}
+.testimonial-card img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+
+/* Transformation comparison container */
+.comparison{position:relative;overflow:hidden;border-radius:12px}
+.comparison img{width:100%;display:block}
+.comparison .handle{position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--primary),var(--surface));transform:translateX(-50%)}
+
+/* Hero stats */
+.hero-stats .stat{min-width:160px}
+.hero-stats .label{font-size:0.85rem;color:var(--muted)}
+
+/* CTA banner */
+.cta-banner{background:linear-gradient(90deg,rgba(30,144,255,0.06),transparent);padding:30px;border-radius:12px;text-align:center}
+
+/* Utility chips */
+.chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-weight:600}
