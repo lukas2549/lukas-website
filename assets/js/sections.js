@@ -1,12 +1,5 @@
 // Sections JS: comparison slider and testimonials swiper init
 document.addEventListener('DOMContentLoaded', ()=>{
-  // Testimonials Swiper
-  try{
-    if(window.Swiper){
-      new Swiper('.testimonials-swiper',{loop:true,slidesPerView:1,autoplay:{delay:4500},pagination:{el:'.swiper-pagination',clickable:true}});
-    }
-  }catch(e){console.warn('Swiper init failed',e)}
-
   // Comparison slider logic
   const comparisons = document.querySelectorAll('.comparison');
   comparisons.forEach(comp=>{
@@ -33,11 +26,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
     comp.addEventListener('click',(e)=>{ setPosition(e.clientX); });
   });
 
-  // CTA hook to booking modal (handles any element with .open-booking)
-  const bookingModal = document.getElementById('bookingModal');
-  if(bookingModal){
-    document.querySelectorAll('.open-booking').forEach(el=>{
-      el.addEventListener('click', (e)=>{ e.preventDefault(); new bootstrap.Modal(bookingModal).show(); });
-    });
-  }
 });

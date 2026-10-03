@@ -157,7 +157,6 @@ footer{border-top:1px solid rgba(255,255,255,0.03)}
 .navbar.scrolled{background:linear-gradient(180deg,rgba(234,244,255,0.95),rgba(234,244,255,0.9));box-shadow:0 8px 30px rgba(4,17,36,0.06);backdrop-filter:blur(6px);transition:all .22s ease}
 
 /* Fallback when hero video not available: keep background image, increase overlay darkness for readability */
-.hero-no-video{/* no-op: background image set on .hero */}
 .hero-no-video .overlay::before{background:linear-gradient(180deg, rgba(4,10,25,0.92) 0%, rgba(4,10,25,0.75) 40%, rgba(0,0,0,0.75) 75%);opacity:1}
 .hero-no-video .overlay::after{opacity:0.85}
 

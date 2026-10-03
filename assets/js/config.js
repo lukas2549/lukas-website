@@ -1,0 +1,6 @@
+const SITE_CONFIG = {
+  WHATSAPP_NUMBER: "2547XXXXXXXX",
+  FORM_ENDPOINT: "https://..."
+};
+
+window.SITE_CONFIG = SITE_CONFIG;

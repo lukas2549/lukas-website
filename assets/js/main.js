@@ -11,20 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Booking modal trigger
-  const bookBtn = document.getElementById('bookBtn') || document.getElementById('openBooking');
-  const bookingModal = document.getElementById('bookingModal');
-  if (bookBtn && bookingModal) {
-    bookBtn.addEventListener('click', () => {
-      const bs = new bootstrap.Modal(bookingModal);
-      bs.show();
-    });
-  }
-
   // Populate programs from JSON if available
   fetch('assets/data/programs.json').then(r => r.json()).then(data => {
     const featured = document.getElementById('featuredPrograms');
-    const bookingSelect = document.getElementById('bookingProgram') || document.getElementById('programSelect');
     if (featured) {
       featured.innerHTML = '';
       data.programs.slice(0, 6).forEach(p => {
@@ -36,15 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         featured.appendChild(col);
       });
     }
-    if (bookingSelect && data.programs) {
-      bookingSelect.innerHTML = data.programs.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
-    }
   }).catch(() => {
     // silent fail for now
   });
-
-  // AOS init
-  if (window.AOS) AOS.init({ duration: 800, once: true, easing: 'ease-out-quad' });
 
   // Hero video: by default we show the gradient fallback. To enable a local hero video,
   // place a file at `assets/videos/hero.mp4` and uncomment a small loader here.
@@ -104,17 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(href && href.startsWith('#')){
         const target = document.querySelector(href);
         if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
-      }
-    });
-  });
-
-  // Close mobile nav on link click
-  document.querySelectorAll('.navbar-collapse .nav-link').forEach(link=>{
-    link.addEventListener('click', ()=>{
-      const collapseEl = document.querySelector('.navbar-collapse');
-      if(collapseEl && collapseEl.classList.contains('show')){
-        const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle:false});
-        bsCollapse.hide();
       }
     });
   });
