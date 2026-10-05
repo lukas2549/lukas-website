@@ -48,6 +48,36 @@ function initializeNavbar() {
   // Insert nav at top of body
   document.body.insertBefore(nav, document.body.firstChild);
 
+  const whatsappNumber = String(window.SITE_CONFIG?.WHATSAPP_NUMBER || '');
+  const hasConfiguredWhatsapp = /^\d{8,15}$/.test(whatsappNumber);
+  const isContactPage = location.pathname.split('/').pop().toLowerCase() === 'contact.html';
+  let mobileActionBar = document.querySelector('.mobile-action-bar');
+
+  if (!isContactPage && !mobileActionBar) {
+    mobileActionBar = document.createElement('nav');
+    mobileActionBar.className = 'mobile-action-bar';
+    mobileActionBar.setAttribute('aria-label', 'Quick actions');
+
+    if (hasConfiguredWhatsapp) {
+      const whatsappLink = document.createElement('a');
+      whatsappLink.className = 'mobile-action-bar__action mobile-action-bar__whatsapp';
+      whatsappLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Lucas, I would like to book a consultation.')}`;
+      whatsappLink.target = '_blank';
+      whatsappLink.rel = 'noopener';
+      whatsappLink.textContent = 'WhatsApp';
+      mobileActionBar.append(whatsappLink);
+    } else {
+      mobileActionBar.classList.add('mobile-action-bar--booking-only');
+    }
+
+    const bookingLink = document.createElement('a');
+    bookingLink.className = 'mobile-action-bar__action mobile-action-bar__booking';
+    bookingLink.href = 'contact.html';
+    bookingLink.textContent = 'Book a consultation';
+    mobileActionBar.append(bookingLink);
+    document.body.append(mobileActionBar);
+  }
+
   const navToggle = document.getElementById('navToggle');
   const navOverlay = document.getElementById('navOverlay');
   const navClose = document.getElementById('navClose');
@@ -58,6 +88,7 @@ function initializeNavbar() {
   function openMobile() {
     navToggle.classList.add('open');
     navOverlay.classList.add('open');
+    mobileActionBar?.classList.add('is-menu-open');
     navToggle.setAttribute('aria-expanded', 'true');
     document.body.classList.add('no-scroll');
     navOverlay.setAttribute('aria-hidden', 'false');
@@ -65,6 +96,7 @@ function initializeNavbar() {
   function closeMobile() {
     navToggle.classList.remove('open');
     navOverlay.classList.remove('open');
+    mobileActionBar?.classList.remove('is-menu-open');
     navToggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('no-scroll');
     navOverlay.setAttribute('aria-hidden', 'true');
@@ -77,7 +109,6 @@ function initializeNavbar() {
   navClose.addEventListener('click', closeMobile);
   navOverlay.addEventListener('click', function (e) { if (e.target === navOverlay) closeMobile(); });
 
-  const whatsappNumber = window.SITE_CONFIG?.WHATSAPP_NUMBER || '2547XXXXXXXX';
   document.querySelectorAll('[data-whatsapp-cta]').forEach(link => {
     const message = link.dataset.whatsappMessage || 'Hi Lucas, I would like to ask about training.';
     link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -101,6 +132,21 @@ function initializeNavbar() {
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  if (mobileActionBar) {
+    let actionBarFrame = 0;
+    const updateActionBar = () => {
+      actionBarFrame = 0;
+      mobileActionBar.classList.toggle('is-visible', window.scrollY > 300);
+    };
+    const scheduleActionBarUpdate = () => {
+      if (actionBarFrame) return;
+      actionBarFrame = requestAnimationFrame(updateActionBar);
+    };
+
+    updateActionBar();
+    window.addEventListener('scroll', scheduleActionBarUpdate, { passive: true });
+  }
 
   // Keyboard accessibility for mobile menu
   document.addEventListener('keydown', (e) => {
