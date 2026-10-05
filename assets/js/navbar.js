@@ -5,7 +5,7 @@ function initializeNavbar() {
   nav.innerHTML = `
     <div class="container nav-inner">
       <a href="index.html" class="nav-brand" aria-label="Lucas Trainer home">
-        <span class="nav-icon" aria-hidden="true"><i class="fas fa-dumbbell"></i></span>
+        <span class="nav-icon" aria-hidden="true"><img src="assets/images/logo/lucas-trainer-icon.svg" width="40" height="40" alt="" decoding="async"></span>
         <span class="nav-title"><span class="brand-lucas text-primary">Lucas</span> <span class="brand-training text">Trainer</span></span>
       </a>
       <nav aria-label="Primary navigation">
